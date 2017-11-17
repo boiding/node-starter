@@ -22,7 +22,7 @@ request({
         console.log('whoops');
         return;
     }
-    if (response && response.statusCode === '204') {
+    if (response && response.statusCode === 204) {
         console.log('successfully registered \'%s\' at %s', data.name, data.ip_address);
     } else {
         console.log('could not register: \'%s\'', response.body.reason);
