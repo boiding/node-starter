@@ -6,7 +6,8 @@ app.use(body_parser.json());
 
 app.post('/register', function(request, response){
     console.log(request.body);
-    response.send('Ok');
+    // response.send(204); // success
+    response.status(500).send({ 'reason': 'ip-address already registered' });
 });
 
 app.listen(2643, function(){
