@@ -1,3 +1,5 @@
+var ip = require('ip');
+
 var script_arguments = process.argv.slice(2);
 
 if (script_arguments.length != 1) {
@@ -5,4 +7,5 @@ if (script_arguments.length != 1) {
     process.exit(1);
 }
 
+console.log(ip.address());
 console.log(script_arguments[0]);
