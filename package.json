@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/boiding/node-starter/issues"
   },
-  "homepage": "https://github.com/boiding/node-starter#readme"
+  "homepage": "https://github.com/boiding/node-starter#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
