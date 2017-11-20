@@ -4,12 +4,11 @@ var app = express();
 
 app.use(body_parser.json());
 
-app.post('/register', function(request, response){
-    console.log(request.body);
-    // response.status(204).end(); // success
-    response.status(500).send({ 'reason': 'ip-address already registered' });
+app.head('/heartbeat', function(request, response){
+    response.status(204).end();
 });
 
-app.listen(2643, function(){
-    console.log('listening on port 2643');
+const port = 2643;
+app.listen(port, function(){
+    console.log('listening on port %s', port);
 });
