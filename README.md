@@ -12,3 +12,7 @@ npm run register <team-name>
 The script needs an argument; the team name. If you are looking for inspiration,
 why not join your favorite color, your favorite city and your favorite animal
 with dashes. E.g. my team name would be yellow-nijmegen-ant.
+
+### Unregistering
+When you want to unregister, for what every reason. Pass the `--unregister` flag
+to the above command.
