@@ -4,6 +4,7 @@ var command_line_arguments = require('command-line-args');
 
 var command_options_definitions = [
     { name: 'unregister', alias: 'u', type: Boolean },
+    { name: 'port', alias: 'p', type: Number, defaultValue: 2643 },
     { name: 'name', type: String, defaultOption: true }
 ];
 
@@ -33,6 +34,7 @@ function usage_and_quit(reason) {
 function register(command_options) {
     var data = {
         'ip_address': ip.address(),
+        'port': command_options.port,
         'name': command_options.name
     };
 
