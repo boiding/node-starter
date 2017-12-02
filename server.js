@@ -5,6 +5,7 @@ var app = express();
 app.use(body_parser.json());
 
 app.head('/heartbeat', function(request, response){
+    console.log('heartbeat request received');
     response.status(204).end();
 });
 
