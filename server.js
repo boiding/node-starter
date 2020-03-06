@@ -12,7 +12,7 @@ app.head('/heartbeat', function(request, response) {
 app.post('/brain', function(request, response) {
     console.log('brain is picked');
     var intent = process(request.body);
-    response.status(204).end();
+    response.status(200).send(intent).end();
 });
 
 function process(flock) {
