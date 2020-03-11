@@ -1,7 +1,7 @@
 # node-starter
 A Boiding workshop starter kit using node
 
-## Registering to the workshop server
+## Registering to the Workshop Server
 The `package.json` describes a `register` script that can be used to register
 your team. It can be invoked via
 
@@ -20,3 +20,12 @@ to the above command.
 ```sh
 npm run register -- --unregister <team-name>
 ```
+
+## Starting Brain Server
+To start the node brain server run the command
+
+```sh
+node server.js
+```
+
+Remember to restart your server everytime you made some changes.
