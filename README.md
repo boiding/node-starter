@@ -1,5 +1,7 @@
 # node-starter
-A Boiding workshop starter kit using node
+A Boiding workshop starter kit using node.
+
+For feedback and improvements go to the [repository][repo]
 
 ## Registering to the Workshop Server
 The `package.json` describes a `register` script that can be used to register
@@ -29,3 +31,5 @@ node server.js
 ```
 
 Remember to restart your server everytime you made some changes.
+
+[repo]: https://github.com/boiding/node-starter 
