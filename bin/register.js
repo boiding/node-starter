@@ -5,6 +5,7 @@ var command_line_arguments = require('command-line-args');
 var command_options_definitions = [
     { name: 'unregister', alias: 'u', type: Boolean },
     { name: 'port', alias: 'p', type: Number, defaultValue: 2643 },
+    { name: 'server', alias: 's', type: String, defaultValue: '192.168.1.101' },
     { name: 'name', type: String, defaultOption: true }
 ];
 
@@ -27,7 +28,7 @@ if (!command_options.unregister) {
 
 function usage_and_quit(reason) {
     console.log(reason);
-    console.log('usage: npm run register [--unregister] <team-name>');
+    console.log('usage: npm run register [--unregister] [--port 2643] [--server 192.168.1.101] --name <team-name>');
     process.exit(1);
 }
 
@@ -38,8 +39,10 @@ function register(command_options) {
         'name': command_options.name
     };
 
+    var url = 'http://' + command_options.server + ':2643/register'
+    console.log(url);
     request({
-        url: 'http://localhost:2643/register',
+        url: url,
         method: 'POST',
         json: data
     }, function(error, response, body){
@@ -60,8 +63,9 @@ function unregister(command_options) {
         "name": command_options.name
     };
 
+    var url = 'http://' + command_options.server + ':2643/register'
     request({
-        url: 'http://localhost:2643/register',
+        url: url,
         method: 'DELETE',
         json: data
     }, function(error, response, body){
