@@ -1,0 +1,15 @@
+name: Notify material
+on:
+  push:
+    branches:
+      - main
+jobs:
+  create-archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify material of change
+        run: >-
+          curl -X POST https://api.github.com/repos/boiding/material/dispatches
+          -H 'Accept: application/vnd.github.everest-preview+json'
+          -u '${{ secrets.ACCESS_TOKEN }}'
+          --data '{"event_type": "notification-of-change", "client_payload": { "repository": "node-starter" }}'
