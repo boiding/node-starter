@@ -18,11 +18,11 @@ app.post('/brain', function(request, response) {
 function process(flock) {
     var result = {};
     for (name in flock.boids) {
-        var b = behavior(flock[name], flock);
+        var b = behavior(flock.boids[name], flock);
         if (b) {
             result[name] = b;
         }
-    } 
+    }
     return result;
 }
 
