@@ -1,8 +1,8 @@
-var ip = require('ip');
-var request = require('request');
-var command_line_arguments = require('command-line-args');
+const ip = require('ip');
+const fetch = require('node-fetch');
+const command_line_arguments = require('command-line-args');
 
-var command_options_definitions = [
+const command_options_definitions = [
     { name: 'unregister', alias: 'u', type: Boolean },
     { name: 'port', alias: 'p', type: Number, defaultValue: 2643 },
     { name: 'server', alias: 's', type: String, defaultValue: '192.168.1.101' },
@@ -40,21 +40,18 @@ function register(command_options) {
     };
 
     var url = 'http://' + command_options.server + ':2643/register'
-    console.log(url);
-    request({
-        url: url,
+    fetch(url, {
         method: 'POST',
-        json: data
-    }, function(error, response, body){
-        if (error) {
-            console.log('whoops');
-            return;
-        }
-        if (response && response.statusCode === 204) {
+        body:    JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+    }).then(response => {
+        if (response.ok) {
             console.log('successfully registered \'%s\' at %s', data.name, data.ip_address);
         } else {
             console.log('could not register: \'%s\'', response.body.reason);
         }
+    }).catch(error => {
+        console.log('whoops');
     });
 }
 
