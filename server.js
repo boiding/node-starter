@@ -1,18 +1,25 @@
-var express = require('express');
-var body_parser = require('body-parser');
-var app = express();
-
-app.use(body_parser.json());
-
-app.head('/heartbeat', function(request, response) {
-    console.log('heartbeat request received');
-    response.status(204).end();
+const fastify = require('fastify');
+var app = fastify({
+  logger: {
+      prettyPrint: {
+          translateTime: 'HH:MM:ss Z',
+          ignore: 'pid,hostname'
+      }
+  }
 });
 
-app.post('/brain', function(request, response) {
+app.head('/heartbeat', function(request, reply) {
+    console.log('heartbeat request received');
+    reply.code(204).send();
+});
+
+app.post('/brain', function(request, reply) {
     console.log('brain is picked');
     var intent = process(request.body);
-    response.status(200).send(intent).end();
+    reply
+        .code(200)
+        .header('Content-Type', 'application/json; charset=utf-8')
+        .send(intent);
 });
 
 function process(flock) {
@@ -34,6 +41,6 @@ function behavior(boid, flock) {
 }
 
 const port = 8081;
-app.listen(port, function(){
-    console.log('listening on port %s', port);
+app.listen(port, "0.0.0.0", function(err, address) {
+    if (err) throw err
 });
